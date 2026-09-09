@@ -2,11 +2,25 @@ pipeline {
 
     agent any
 
+    environment {
+        AMI_ID = 'ami-06033d1583f2e66ec'
+        AWS_REGION = 'ap-south-1'
+    }
+
     stages {
 
         stage('Checkout') {
             steps {
-                git 'https://github.com/YOUR_USERNAME/devops-terraform-jenkins.git'
+                echo 'Code checkout completed by Jenkins SCM'
+            }
+        }
+
+        stage('Check Tools') {
+            steps {
+                sh '''
+                    terraform --version
+                    aws --version
+                '''
             }
         }
 
@@ -40,7 +54,7 @@ pipeline {
 
         stage('Approval') {
             steps {
-                input message: 'Deploy infrastructure?'
+                input message: 'Deploy infrastructure?', ok: 'Deploy'
             }
         }
 
