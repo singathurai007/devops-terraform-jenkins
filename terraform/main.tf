@@ -38,6 +38,7 @@ resource "aws_security_group" "devops_sg" {
 resource "aws_instance" "devops_server" {
   ami           = var.ami_id
   instance_type = "t3.micro"
+  key_name = "python"
 
   vpc_security_group_ids = [
     aws_security_group.devops_sg.id
