@@ -68,6 +68,18 @@ pipeline {
             }
         }
 
+       stage('Docker Deploy') {
+    steps {
+        sh '''
+            cd app
+            docker build -t devops-web .
+            docker stop devops-web || true
+            docker rm devops-web || true
+            docker run -d --name devops-web -p 80:80 devops-web
+        '''
+    }
+}
+
         stage('Deployment Complete') {
             steps {
                 sh '''
