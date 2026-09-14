@@ -5,7 +5,7 @@ pipeline {
     environment {
         AMI_ID = 'ami-06033d1583f2e66ec'
         AWS_REGION = 'ap-south-1'
-    }
+    } 
 
     stages {
 
