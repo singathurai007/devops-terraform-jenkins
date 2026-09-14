@@ -3,6 +3,6 @@ services:
     build:
       context: ./app
     container_name: devops-web
-    ports:
+    ports: 
       - "8080:80"
     restart: unless-stopped
